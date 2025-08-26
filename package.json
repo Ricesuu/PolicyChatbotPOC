@@ -6,8 +6,9 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "build": "echo 'No build step required'",
+    "build": "npm install --production",
     "setup": "node scripts/setup.js",
+    "postinstall": "echo 'Installation completed successfully'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
