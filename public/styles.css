@@ -357,13 +357,13 @@ body {
 .message-text .list-item.numbered {
     font-weight: 600;
     font-size: 1.05em;
-    color: #2c3e50;
+    color: #e0e0e0;
     margin: 0.8rem 0 0.4rem 0;
     padding-left: 0;
 }
 
 .bot-message .message-text .list-item.numbered {
-    color: #34495e;
+    color: #f0f0f0;
 }
 
 .message-text .list-item.bullet {
@@ -374,7 +374,7 @@ body {
 
 .message-text strong {
     font-weight: 600;
-    color: inherit;
+    color: #f0f0f0;
 }
 
 /* Better spacing for formatted content */
@@ -391,5 +391,5 @@ body {
     display: block;
     font-size: 1.1em;
     margin-bottom: 1rem;
-    color: #2c3e50;
+    color: #f0f0f0;
 }
