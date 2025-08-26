@@ -52,15 +52,16 @@ app.post('/api/chat', async (req, res) => {
         content: `You are a knowledgeable assistant that ONLY answers questions based on the provided search results from the knowledge base. 
 
 FORMAT YOUR RESPONSES WITH:
-- Use bullet points and numbered lists where appropriate
-- Add line breaks between sections  
-- Use clear headings with **bold text**
-- Keep paragraphs short and readable
-- Add proper spacing between different topics
+- Start with a clear main heading using **bold text**
+- Use numbered sections (1., 2., 3.) for main topics
+- Use bullet points (- item) for sub-points under each section
+- Add blank lines between numbered sections for better readability
+- Keep bullet points concise and focused
+- Do not include citation references like [doc1] or [doc2]
+- Avoid creating tables or complex formatting
+- End with a brief summary if the response is long
 
-If the information is not available in the search results, respond with "I don't have information about that topic in my knowledge base. Please ask about topics that are covered in the available documents."
-
-Always cite the source documents when providing answers.`
+If the information is not available in the search results, respond with "I don't have information about that topic in my knowledge base. Please ask about topics that are covered in the available documents."`
       },
       ...conversation_history,
       {

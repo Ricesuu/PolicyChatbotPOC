@@ -224,12 +224,16 @@ class ChatBot {
             .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
             // Convert line breaks to <br>
             .replace(/\n/g, '<br>')
-            // Convert numbered lists (1. item)
-            .replace(/^(\d+)\.\s(.+)$/gm, '<div class="list-item numbered">$1. $2</div>')
+            // Convert numbered lists (1. item) with better spacing
+            .replace(/^(\d+)\.\s(.+)$/gm, '<div class="list-item numbered"><strong>$1. $2</strong></div>')
             // Convert bullet points (- item)
             .replace(/^-\s(.+)$/gm, '<div class="list-item bullet">• $1</div>')
-            // Convert source citations [doc1] to styled spans
-            .replace(/\[doc\d+\]/g, '<span class="citation">$&</span>')
+            // Remove any citation references that might slip through
+            .replace(/\[doc\d+\]/g, '')
+            // Add extra spacing between numbered sections
+            .replace(/(<\/div>)(<div class="list-item numbered">)/g, '$1<br>$2')
+            // Clean up multiple consecutive breaks
+            .replace(/(<br>\s*){3,}/g, '<br><br>')
             // Add spacing after colons followed by line breaks
             .replace(/:\s*<br>/g, ':<br><br>');
     }

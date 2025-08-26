@@ -325,26 +325,26 @@ body {
 
 /* Message formatting styles */
 .message-text .list-item {
-    margin: 0.25rem 0;
+    margin: 0.4rem 0;
     padding-left: 1rem;
 }
 
 .message-text .list-item.numbered {
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 1.05em;
+    color: #2c3e50;
+    margin: 0.8rem 0 0.4rem 0;
+    padding-left: 0;
+}
+
+.bot-message .message-text .list-item.numbered {
+    color: #34495e;
 }
 
 .message-text .list-item.bullet {
     color: inherit;
-}
-
-.message-text .citation {
-    background: rgba(52, 152, 219, 0.1);
-    color: #2980b9;
-    padding: 0.1rem 0.3rem;
-    border-radius: 3px;
-    font-size: 0.85em;
-    font-weight: 500;
-    margin: 0 0.2rem;
+    margin: 0.3rem 0;
+    padding-left: 1.5rem;
 }
 
 .message-text strong {
@@ -354,9 +354,17 @@ body {
 
 /* Better spacing for formatted content */
 .bot-message .message-text {
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 .bot-message .message-text br + br {
     line-height: 0.5;
+}
+
+/* Main heading styling */
+.bot-message .message-text > strong:first-child {
+    display: block;
+    font-size: 1.1em;
+    margin-bottom: 1rem;
+    color: #2c3e50;
 }
