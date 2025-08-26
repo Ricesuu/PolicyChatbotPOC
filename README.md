@@ -1,220 +1,127 @@
-# AI Policy Chatbot POC
+# 🤖 AI Policy Chatbot
 
-A modern AI chatbot web application built for Azure App Service that integrates with Azure AI Foundry.
+A modern AI chatbot web application that integrates with Azure AI Foundry for intelligent conversations.
 
-## Features
+![Chatbot Interface](https://img.shields.io/badge/UI-Modern%20Chat%20Interface-blue)
+![Azure](https://img.shields.io/badge/Azure-AI%20Foundry-0078d4)
+![Node.js](https://img.shields.io/badge/Node.js-18+-green)
 
-- 🤖 **AI-Powered Conversations**: Integrates with Azure AI Foundry for intelligent responses
-- 💬 **Real-time Chat Interface**: Modern, responsive chat UI with typing indicators
-- 🔒 **Secure**: Built with security best practices using Helmet.js
-- 📱 **Mobile-Friendly**: Responsive design that works on all devices
-- ⚡ **Fast**: Optimized Express.js backend with efficient API calls
-- 🔄 **Conversation Memory**: Maintains context across the conversation
-- 📊 **Health Monitoring**: Built-in health check endpoint
+## ✨ Features
 
-## Prerequisites
+- 💬 **Real-time Chat Interface** - Modern, responsive design
+- 🤖 **Azure AI Integration** - Powered by Azure AI Foundry
+- 📱 **Mobile Friendly** - Works on all devices  
+- 🔒 **Secure** - Built with security best practices
+- ⚡ **Fast** - Optimized performance
+- 🔄 **Conversation Memory** - Maintains context
+
+## 🚀 Quick Start
+
+### 1. Clone & Install
+```bash
+git clone https://github.com/yourusername/PolicyChatbotPOC.git
+cd PolicyChatbotPOC
+npm install
+```
+
+### 2. Configure (Choose one method)
+
+**Option A: Setup Assistant**
+```bash
+npm run setup
+```
+
+**Option B: Manual Configuration**
+```bash
+cp .env.example .env
+# Edit .env with your Azure AI Foundry credentials
+```
+
+### 3. Run
+```bash
+# Development
+npm run dev
+
+# Production
+npm start
+```
+
+### 4. Open Browser
+Navigate to `http://localhost:3000`
+
+## 📋 Prerequisites
 
 - Node.js 18.0.0 or higher
-- Azure AI Foundry account with API access
-- Azure App Service (for deployment)
+- Azure AI Foundry account with deployed model
+- Azure App Service (for production deployment)
 
-## Local Development Setup
+## 🔧 Configuration
 
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd PolicyChatbotPOC
-   ```
+You need these Azure AI Foundry credentials:
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `AZURE_AI_ENDPOINT` | Your AI Foundry endpoint | `https://your-resource.openai.azure.com` |
+| `AZURE_AI_API_KEY` | Your API key | `abc123...` |
 
-3. **Environment Configuration**
-   - Copy `.env.example` to `.env`
-   - Update the environment variables:
-     ```env
-     AZURE_AI_ENDPOINT=https://your-endpoint.openai.azure.com
-     AZURE_AI_API_KEY=your-api-key-here
-     PORT=3000
-     NODE_ENV=development
-     ```
+**Need help finding these?** See [CONFIGURATION.md](CONFIGURATION.md) for detailed instructions.
 
-4. **Start the development server**
-   ```bash
-   npm run dev
-   ```
+## 🌐 Deployment
 
-5. **Open your browser**
-   Navigate to `http://localhost:3000`
+### Azure App Service
 
-## Azure Deployment
+1. **Create App Service** with Node.js runtime
+2. **Set Environment Variables** in Azure Portal
+3. **Deploy Code** via GitHub Actions, Azure DevOps, or direct upload
 
-### Using Azure App Service
+For detailed deployment instructions, see the [deployment section](docs/DEPLOYMENT.md).
 
-1. **Create an Azure App Service**
-   - Choose Node.js as the runtime stack
-   - Select appropriate pricing tier
-
-2. **Configure Application Settings**
-   In the Azure Portal, add these application settings:
-   - `AZURE_AI_ENDPOINT`: Your Azure AI Foundry endpoint
-   - `AZURE_AI_API_KEY`: Your Azure AI Foundry API key
-   - `NODE_ENV`: production
-
-3. **Deploy the code**
-   - Use Azure DevOps, GitHub Actions, or direct deployment
-   - Ensure all files including `web.config` are deployed
-
-### Using Azure CLI
-
-```bash
-# Login to Azure
-az login
-
-# Create resource group
-az group create --name myResourceGroup --location "East US"
-
-# Create App Service plan
-az appservice plan create --name myAppServicePlan --resource-group myResourceGroup --sku B1 --is-linux
-
-# Create web app
-az webapp create --resource-group myResourceGroup --plan myAppServicePlan --name myAIChatbot --runtime "NODE|18-lts"
-
-# Configure app settings
-az webapp config appsettings set --resource-group myResourceGroup --name myAIChatbot --settings AZURE_AI_ENDPOINT="your-endpoint" AZURE_AI_API_KEY="your-api-key" NODE_ENV="production"
-
-# Deploy code
-az webapp deployment source config --resource-group myResourceGroup --name myAIChatbot --repo-url <your-git-repo> --branch main --manual-integration
-```
-
-## API Endpoints
-
-### POST `/api/chat`
-Send a message to the AI chatbot.
-
-**Request Body:**
-```json
-{
-  "message": "Hello, how can you help me?",
-  "conversation_history": []
-}
-```
-
-**Response:**
-```json
-{
-  "response": "Hello! I'm here to help...",
-  "conversation_id": "1234567890"
-}
-```
-
-### GET `/api/health`
-Health check endpoint.
-
-**Response:**
-```json
-{
-  "status": "healthy",
-  "timestamp": "2024-01-01T00:00:00.000Z",
-  "version": "1.0.0"
-}
-```
-
-## Configuration
-
-### Environment Variables
-
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `AZURE_AI_ENDPOINT` | Azure AI Foundry endpoint URL | Yes |
-| `AZURE_AI_API_KEY` | Azure AI Foundry API key | Yes |
-| `PORT` | Server port (default: 3000) | No |
-| `NODE_ENV` | Environment (development/production) | No |
-
-### Azure AI Foundry Setup
-
-1. Create an Azure AI Foundry resource
-2. Deploy a GPT model (e.g., GPT-4)
-3. Get the endpoint URL and API key
-4. Update the deployment name in `server.js` if different from "gpt-4"
-
-## Project Structure
+## 📁 Project Structure
 
 ```
-PolicyChatbotPOC/
-├── public/
-│   ├── index.html          # Main HTML file
-│   ├── styles.css          # CSS styles
-│   └── script.js           # Frontend JavaScript
-├── server.js               # Express.js server
-├── package.json            # Node.js dependencies
-├── web.config              # IIS configuration for Azure
-├── .env.example            # Environment variables template
-├── .gitignore              # Git ignore rules
-└── README.md               # This file
+├── 📂 src/              # Application source code
+│   └── server.js        # Main Express.js server
+├── 📂 public/           # Frontend assets (HTML, CSS, JS)
+├── 📂 config/           # Configuration files
+├── 📂 scripts/          # Setup and utility scripts
+├── .env.example         # Environment template
+├── package.json         # Dependencies and scripts
+└── README.md           # This file
 ```
 
-## Security Features
+## 🔒 Security
 
-- **Helmet.js**: Security headers and protection
-- **CORS**: Cross-origin resource sharing configuration
-- **Input Validation**: Message validation and sanitization
-- **Rate Limiting**: Built-in protection against abuse
-- **Environment Variables**: Secure credential management
+- Environment variables for secure credential storage
+- Helmet.js for security headers
+- Input validation and sanitization
+- CORS configuration
+- Rate limiting protection
 
-## Customization
+## 🎨 Customization
 
-### Modifying the AI Behavior
-Edit the system message in `server.js`:
-```javascript
-{
-  role: 'system',
-  content: 'You are a helpful AI assistant specialized in policy questions...'
-}
-```
+- **UI Styling**: Edit `public/styles.css`
+- **AI Behavior**: Modify system prompts in `src/server.js`
+- **Features**: Add new endpoints and functionality
 
-### Styling
-Modify `public/styles.css` to change the appearance of the chat interface.
-
-### Adding Features
-- Conversation persistence
-- User authentication
-- File upload support
-- Multi-language support
-
-## Troubleshooting
-
-### Common Issues
-
-1. **401 Unauthorized**: Check your Azure AI API key and endpoint
-2. **CORS Errors**: Ensure the frontend is served from the same domain
-3. **500 Server Error**: Check server logs for detailed error messages
-4. **Deployment Issues**: Verify all environment variables are set in Azure
-
-### Logs
-
-In Azure App Service, check the logs:
-- Navigate to your App Service in Azure Portal
-- Go to "Log stream" or "App Service logs"
-- Enable application logging for detailed information
-
-## Contributing
+## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch
+2. Create a feature branch: `git checkout -b feature-name`
 3. Make your changes
 4. Test thoroughly
 5. Submit a pull request
 
-## License
+## 📞 Support
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+- 📖 [Configuration Guide](CONFIGURATION.md)
+- 🚀 [Deployment Guide](docs/DEPLOYMENT.md)
+- 🐛 [Issues](https://github.com/yourusername/PolicyChatbotPOC/issues)
+- 💬 [Discussions](https://github.com/yourusername/PolicyChatbotPOC/discussions)
 
-## Support
+## 📄 License
 
-For issues and questions:
-- Check the troubleshooting section
-- Review Azure AI Foundry documentation
-- Create an issue in the repository
+MIT License - see [LICENSE](LICENSE) file for details.
+
+---
+
+**⭐ Star this repo if you find it helpful!**
