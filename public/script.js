@@ -163,7 +163,13 @@ class ChatBot {
         
         const textDiv = document.createElement('div');
         textDiv.className = 'message-text';
-        textDiv.textContent = text;
+        
+        // Format the message with basic markdown-style formatting
+        if (sender === 'bot') {
+            textDiv.innerHTML = this.formatBotMessage(text);
+        } else {
+            textDiv.textContent = text;
+        }
         
         const timeDiv = document.createElement('div');
         timeDiv.className = 'message-time';
@@ -209,6 +215,23 @@ class ChatBot {
             minute: '2-digit',
             hour12: true
         });
+    }
+
+    formatBotMessage(text) {
+        // Convert basic markdown-style formatting to HTML
+        return text
+            // Convert **bold** to <strong>
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            // Convert line breaks to <br>
+            .replace(/\n/g, '<br>')
+            // Convert numbered lists (1. item)
+            .replace(/^(\d+)\.\s(.+)$/gm, '<div class="list-item numbered">$1. $2</div>')
+            // Convert bullet points (- item)
+            .replace(/^-\s(.+)$/gm, '<div class="list-item bullet">• $1</div>')
+            // Convert source citations [doc1] to styled spans
+            .replace(/\[doc\d+\]/g, '<span class="citation">$&</span>')
+            // Add spacing after colons followed by line breaks
+            .replace(/:\s*<br>/g, ':<br><br>');
     }
 }
 

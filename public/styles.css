@@ -322,3 +322,41 @@ body {
 .chat-messages::-webkit-scrollbar-thumb:hover {
     background: #a8a8a8;
 }
+
+/* Message formatting styles */
+.message-text .list-item {
+    margin: 0.25rem 0;
+    padding-left: 1rem;
+}
+
+.message-text .list-item.numbered {
+    font-weight: 500;
+}
+
+.message-text .list-item.bullet {
+    color: inherit;
+}
+
+.message-text .citation {
+    background: rgba(52, 152, 219, 0.1);
+    color: #2980b9;
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+    font-size: 0.85em;
+    font-weight: 500;
+    margin: 0 0.2rem;
+}
+
+.message-text strong {
+    font-weight: 600;
+    color: inherit;
+}
+
+/* Better spacing for formatted content */
+.bot-message .message-text {
+    line-height: 1.6;
+}
+
+.bot-message .message-text br + br {
+    line-height: 0.5;
+}
