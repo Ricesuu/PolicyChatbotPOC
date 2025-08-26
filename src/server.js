@@ -1,9 +1,9 @@
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
-const path = require('path');
 const axios = require('axios');
 
 const app = express();
@@ -24,7 +24,7 @@ app.use(helmet({
 app.use(cors());
 app.use(morgan('combined'));
 app.use(express.json({ limit: '10mb' }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 // Azure AI Foundry configuration
 const AZURE_AI_ENDPOINT = process.env.AZURE_AI_ENDPOINT;
@@ -49,7 +49,7 @@ app.post('/api/chat', async (req, res) => {
     const messages = [
       {
         role: 'system',
-        content: 'You are an AI assistant that only says HELLO!'
+        content: 'You are a helpful policy assistant. Answer questions about company policies and procedures clearly and accurately.'
       },
       ...conversation_history,
       {
@@ -58,17 +58,41 @@ app.post('/api/chat', async (req, res) => {
       }
     ];
 
+    // Prepare request body
+    const requestBody = {
+      messages: messages,
+      max_tokens: 1000,
+      temperature: 0.7,
+      top_p: 0.95,
+      frequency_penalty: 0,
+      presence_penalty: 0
+    };
+
+    // Add Azure AI Search integration if configured
+    const AZURE_SEARCH_ENDPOINT = process.env.AZURE_SEARCH_ENDPOINT;
+    const AZURE_SEARCH_INDEX = process.env.AZURE_SEARCH_INDEX;
+    const AZURE_SEARCH_API_KEY = process.env.AZURE_SEARCH_API_KEY;
+
+    if (AZURE_SEARCH_ENDPOINT && AZURE_SEARCH_INDEX && AZURE_SEARCH_API_KEY) {
+      requestBody.data_sources = [
+        {
+          type: "azure_search",
+          parameters: {
+            endpoint: AZURE_SEARCH_ENDPOINT,
+            index_name: AZURE_SEARCH_INDEX,
+            authentication: {
+              type: "api_key",
+              key: AZURE_SEARCH_API_KEY
+            }
+          }
+        }
+      ];
+    }
+
     // Call Azure AI Foundry API
     const response = await axios.post(
       `${AZURE_AI_ENDPOINT}/openai/deployments/gpt-4.1/chat/completions?api-version=2025-01-01-preview`,
-      {
-        messages: messages,
-        max_tokens: 1000,
-        temperature: 0.7,
-        top_p: 0.95,
-        frequency_penalty: 0,
-        presence_penalty: 0
-      },
+      requestBody,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -105,13 +129,13 @@ app.get('/api/health', (req, res) => {
   res.json({ 
     status: 'healthy', 
     timestamp: new Date().toISOString(),
-    version: require('./package.json').version
+    version: require('../package.json').version
   });
 });
 
 // Serve the main HTML file
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
 
 // 404 handler
