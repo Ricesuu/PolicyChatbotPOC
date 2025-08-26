@@ -18,6 +18,10 @@ class ChatBot {
         // Set initial timestamp
         document.getElementById('initialTime').textContent = this.formatTime(new Date());
         
+        // Initialize input field size properly to show placeholder fully
+        this.messageInput.style.height = '22px';
+        this.messageInput.style.overflowY = 'hidden';
+        
         // Event listeners
         this.sendButton.addEventListener('click', () => this.sendMessage());
         this.messageInput.addEventListener('keypress', (e) => {
@@ -83,8 +87,19 @@ class ChatBot {
     }
 
     autoResize() {
+        // Reset height to auto to get accurate scrollHeight
         this.messageInput.style.height = 'auto';
-        this.messageInput.style.height = Math.min(this.messageInput.scrollHeight, 120) + 'px';
+        
+        // Calculate the new height, but keep minimum at 22px to show placeholder properly
+        const newHeight = Math.max(22, Math.min(this.messageInput.scrollHeight, 80));
+        this.messageInput.style.height = newHeight + 'px';
+        
+        // Prevent scrolling within the textarea
+        if (this.messageInput.scrollHeight <= 80) {
+            this.messageInput.style.overflowY = 'hidden';
+        } else {
+            this.messageInput.style.overflowY = 'auto';
+        }
     }
 
     async sendMessage() {
