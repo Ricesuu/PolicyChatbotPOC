@@ -1,19 +1,9 @@
 # 🤖 AI Policy Chatbot
 
-A modern AI chatbot web application that integrates with Azure AI Foundry for intelligent conversations.
+An AI chatbot web application that integrates with Azure AI Foundry.
 
-![Chatbot Interface](https://img.shields.io/badge/UI-Modern%20Chat%20Interface-blue)
 ![Azure](https://img.shields.io/badge/Azure-AI%20Foundry-0078d4)
 ![Node.js](https://img.shields.io/badge/Node.js-18+-green)
-
-## ✨ Features
-
-- 💬 **Real-time Chat Interface** - Modern, responsive design
-- 🤖 **Azure AI Integration** - Powered by Azure AI Foundry
-- 📱 **Mobile Friendly** - Works on all devices  
-- 🔒 **Secure** - Built with security best practices
-- ⚡ **Fast** - Optimized performance
-- 🔄 **Conversation Memory** - Maintains context
 
 ## 🚀 Quick Start
 
@@ -63,6 +53,9 @@ You need these Azure AI Foundry credentials:
 |----------|-------------|---------|
 | `AZURE_AI_ENDPOINT` | Your AI Foundry endpoint | `https://your-resource.openai.azure.com` |
 | `AZURE_AI_API_KEY` | Your API key | `abc123...` |
+| `AZURE_SEARCH_ENDPOINT` | Your AI Search Service URL | `https://your-resource.openai.azure.com`
+| `AZURE_SEARCH_INDEX` | Your index name | `azuredocs`
+| `AZURE_SEARCH_API_KEY` | Your API key | `abc123...`
 
 **Need help finding these?** See [CONFIGURATION.md](CONFIGURATION.md) for detailed instructions.
 
@@ -89,39 +82,7 @@ For detailed deployment instructions, see the [deployment section](docs/DEPLOYME
 └── README.md           # This file
 ```
 
-## 🔒 Security
-
-- Environment variables for secure credential storage
-- Helmet.js for security headers
-- Input validation and sanitization
-- CORS configuration
-- Rate limiting protection
-
 ## 🎨 Customization
 
 - **UI Styling**: Edit `public/styles.css`
 - **AI Behavior**: Modify system prompts in `src/server.js`
-- **Features**: Add new endpoints and functionality
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature-name`
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## 📞 Support
-
-- 📖 [Configuration Guide](CONFIGURATION.md)
-- 🚀 [Deployment Guide](docs/DEPLOYMENT.md)
-- 🐛 [Issues](https://github.com/yourusername/PolicyChatbotPOC/issues)
-- 💬 [Discussions](https://github.com/yourusername/PolicyChatbotPOC/discussions)
-
-## 📄 License
-
-MIT License - see [LICENSE](LICENSE) file for details.
-
----
-
-**⭐ Star this repo if you find it helpful!**
