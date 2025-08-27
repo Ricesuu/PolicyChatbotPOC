@@ -38,14 +38,14 @@ NODE_ENV=production
 
 ### Step 2: Find Your Endpoint
 
-1. In your project, go to **"Settings"** → **"General"**
+1. In your project, go to **"Models + endpoints"** → **"Your deployed model"**
 2. Copy the **"Target URI"** (this is your `AZURE_AI_ENDPOINT`)
 3. Example: `https://your-resource.openai.azure.com`
 
 ### Step 3: Find Your API Key
 
-1. Go to **"Settings"** → **"Connection"**
-2. Copy the **"Primary key"** (this is your `AZURE_AI_API_KEY`)
+1. Go to **"Models + endpoints"** → **"Your deployed model"**
+2. Copy the **"Key"** (this is your `AZURE_AI_API_KEY`)
 3. Keep this secure - never share or commit to version control
 
 ### Step 4: Verify Your Model Deployment

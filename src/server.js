@@ -104,14 +104,14 @@ Remember: If you don't have search results or the search results don't answer th
       ];
     }
 
-    // Call Azure AI Foundry API
+    // Call Azure AI Foundry API - Direct Model Endpoint
     const response = await axios.post(
-      `${AZURE_AI_ENDPOINT}/openai/deployments/gpt-4.1/chat/completions?api-version=2025-01-01-preview`,
+      AZURE_AI_ENDPOINT, // Direct model endpoint URL
       requestBody,
       {
         headers: {
           'Content-Type': 'application/json',
-          'api-key': AZURE_AI_API_KEY
+          'Authorization': `Bearer ${AZURE_AI_API_KEY}` // Bearer token for direct model endpoints
         },
         timeout: 30000
       }
