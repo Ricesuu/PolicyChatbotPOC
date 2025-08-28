@@ -2,11 +2,6 @@
 
 An AI chatbot web application that uses Azure AI Foundry.
 
-![Chatbot Interface](https://img.shields.io/badge/UI-Modern%20Chat%20Interface-blue)
-![Azure](https://img.shields.io/badge/Azure-AI%20Foundry-0078d4)
-![Node.js](https://img.shields.io/badge/Node.js-18+-green)
-![AI Search](https://img.shields.io/badge/Azure-AI%20Search-orange)
-
 ## ✨ Features
 
 - 🤖 **Azure AI Integration** - Powered by Azure AI Foundry with GPT-4.1 model
@@ -104,15 +99,6 @@ For detailed deployment instructions, see the [deployment section](docs/DEPLOYME
 ├── CONFIGURATION.md     # Detailed setup instructions
 └── README.md           # This file
 ```
-
-## 🔒 Security Features
-
-- **Helmet.js** - Security headers and CSP configuration
-- **CORS** - Cross-origin resource sharing protection
-- **Input Validation** - Request body validation and sanitization
-- **Environment Variables** - Secure credential storage
-- **Rate Limiting** - Built-in timeout protection (30s)
-- **Error Handling** - Comprehensive error responses without data leakage
 
 ## 🤖 AI Configuration
 
